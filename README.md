@@ -28,7 +28,6 @@ The graph of countries is connected, but countries may border holes that represe
 Initially, each city has one million (1000000) coins in its country’s motif. 
 Every day a representative portion of coins, based on the city’s beginning day balance, is transported to each neighbor of the city. 
 A representative portion is defined as one coin for every full 1000 coins of a motif.
-![grid example](pictures/grid.png)
 
 A city is complete when at least one coin of each motif is present in that city. 
 A country is complete when all of its cities are complete. 
