@@ -8,7 +8,7 @@ class Map:
         self.countries = []
         self.grid = [[None] * (grid_size + 2) for i in range((grid_size + 2))]
         self.__initialize_grid(countries_data)
-        self.err = self.__validate_map()
+        self.__validate_foreign_neighbours()
 
     def simulate_euro_diffusion(self):
         # check length of countries, if it's 1, country is already full
@@ -50,6 +50,9 @@ class Map:
             country = Country(country_data["name"])
             for x in range(country_data["ll"]["x"], country_data["ur"]["x"] + 1):
                 for y in range(country_data["ll"]["y"], country_data["ur"]["y"] + 1):
+                    if self.grid[x][y] is not None:
+                        raise Exception("%s intersects with %s on [%i, %i]" %
+                                        (self.grid[x][y].country.name, country.name, x, y))
                     city = City(country, countries_data, x, y)
                     self.grid[x][y] = city
                     # add this city to country
@@ -75,9 +78,10 @@ class Map:
             neighbours.append(self.grid[x - 1][y])
         return neighbours
 
-    def __validate_map(self):
+    def __validate_foreign_neighbours(self):
+        if len(self.countries) <=  1:
+            return
         for country in self.countries:
-            if not country.has_foreign_neighbours:
-                return "%s has no connection with other countries" % country.name,
-        return None
+            if not country.has_foreign_neighbours():
+                raise Exception("%s has no connection with other countries" % country.name)
 
