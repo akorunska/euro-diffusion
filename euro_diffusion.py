@@ -5,7 +5,7 @@ if __name__ == "__main__":
     # France 1 4 4 6
     # Spain 3 1 6 3
     # Portugal 1 1 2 2
-    countries = [
+    cases = [[
         {
             "name": "France",
             "ll": {
@@ -39,12 +39,14 @@ if __name__ == "__main__":
                 "y": 2,
             }
         },
-    ]
-    europe_map = Map(countries)
-    europe_map.simulate_euro_diffusion()
+    ]]
+    for i, countries_list in enumerate(cases):
+        europe_map = Map(countries_list)
+        europe_map.simulate_euro_diffusion()
 
-    if europe_map.err is None:
-        for country in europe_map.countries:
-            print(country.name, country.day_of_full)
-    else:
-        print(europe_map.err)
+        print("Case Number %i" % (i + 1))
+        if europe_map.err is None:
+            for country in europe_map.countries:
+                print(country.name, country.day_of_full)
+        else:
+            print(europe_map.err)
