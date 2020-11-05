@@ -1,8 +1,9 @@
 import re
 from .config import input_filepath
 
-def read_lines():
-    with open(input_filepath, 'r') as file:
+
+def read_lines(filepath):
+    with open(filepath, 'r') as file:
         data = file.read()
     return data.split('\n')
 
@@ -35,7 +36,7 @@ def parse_country(line):
 def parse_input():
     cases = []
 
-    lines = read_lines()
+    lines = read_lines(input_filepath)
     line_index = 0
     case = 0
     while line_index < len(lines):
