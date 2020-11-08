@@ -33,8 +33,9 @@ class City:
             self.balance[motif] += self.balance_per_day[motif]
             self.balance_per_day[motif] = 0
 
-        # check if city is full
-        for motif in self.balance_per_day:
-            if self.balance[motif] == 0:
-                return
-        self.full = True
+        if not self.full:
+            # check if city is full
+            for motif in self.balance_per_day:
+                if self.balance[motif] == 0:
+                    return
+            self.full = True
