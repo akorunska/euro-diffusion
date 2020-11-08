@@ -28,12 +28,10 @@ class Country:
         self.day_of_full = day
 
     def has_foreign_neighbours(self) -> bool:
-        has_foreign_neighbours = False
         for c in self.cities:
             for n in c.neighbours:
                 if n.country_name != self.name:
-                    has_foreign_neighbours = True
-        return has_foreign_neighbours
+                    return True
 
     def only_country_mode(self) -> None:
         self.full = True
