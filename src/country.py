@@ -35,6 +35,6 @@ class Country:
                     has_foreign_neighbours = True
         return has_foreign_neighbours
 
-    def only_county_mode(self) -> None:
+    def only_country_mode(self) -> None:
         self.full = True
         self.day_of_full = 0
