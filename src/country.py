@@ -37,4 +37,4 @@ class Country:
 
     def only_county_mode(self) -> None:
         self.full = True
-        self.day_of_full = 1
+        self.day_of_full = 0
