@@ -1,5 +1,5 @@
 import re
-from .config import input_filepath
+from .config import input_filepath, max_countries_amount, grid_size
 
 
 def read_lines(filepath):
@@ -16,7 +16,7 @@ def parse_country(line):
     if not name_pattern.match(args[0]):
         raise Exception("Error at line {%s}: invalid country name" % line)
     for i in range(1, 5):
-        if int(args[i]) <= 0 or int(args[i]) >= 11:
+        if int(args[i]) <= 0 or int(args[i]) >= (grid_size + 1):
             raise Exception("Error at line {%s}: invalid country coordinates" % line)
 
     country = {
@@ -43,7 +43,7 @@ def parse_input():
         counties_len = int(lines[line_index])
         if counties_len == 0:
             return cases
-        if counties_len > 20 or counties_len < 1:
+        if counties_len > max_countries_amount or counties_len < 1:
             raise Exception("Error in input for case %i: invalid amount of countries" % (case + 1))
         line_index += 1
 
