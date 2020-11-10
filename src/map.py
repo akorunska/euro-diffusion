@@ -23,14 +23,14 @@ class Map:
             for x in range(grid_size + 1):
                 for y in range(grid_size + 1):
                     if self.grid[x][y] is not None:
-                        c = self.grid[x][y]
-                        c.transfer_to_neighbours()
+                        city = self.grid[x][y]
+                        city.transfer_to_neighbours()
 
             for x in range(grid_size + 1):
                 for y in range(grid_size + 1):
                     if self.grid[x][y] is not None:
-                        c = self.grid[x][y]
-                        c.finalize_balance_per_day()
+                        city = self.grid[x][y]
+                        city.finalize_balance_per_day()
 
             full = True
             for country in self.countries:
@@ -60,10 +60,10 @@ class Map:
 
         # set neighbours for each city
         for row in self.grid:
-            for c in row:
-                if c is not None:
-                    n = self.__get_neighbours(c.x, c.y)
-                    c.set_neighbours(n)
+            for city in row:
+                if city is not None:
+                    neighbours_list = self.__get_neighbours(city.x, city.y)
+                    city.set_neighbours(neighbours_list)
 
     def __get_neighbours(self, x, y) -> List[City]:
         neighbours = []
