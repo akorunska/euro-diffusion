@@ -32,11 +32,9 @@ class Map:
                         c = self.grid[x][y]
                         c.finalize_balance_per_day()
 
-            for c in self.countries:
-                c.check_fullness(day)
-
             full = True
             for country in self.countries:
+                country.check_fullness(day)
                 if country.full is False:
                     full = False
 
