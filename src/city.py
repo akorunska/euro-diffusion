@@ -7,9 +7,9 @@ class City:
         self.country_name = country_name
         self.x = x
         self.y = y
-        self.balance = {c["name"]: 0 for c in countries_list}
+        self.balance = {city_data["name"]: 0 for city_data in countries_list}
         self.balance[country_name] = initial_city_balance
-        self.balance_per_day = {c["name"]: 0 for c in countries_list}
+        self.balance_per_day = {city_data["name"]: 0 for city_data in countries_list}
         self.neighbours: List['City'] = []
         self.full = False
 
@@ -21,9 +21,9 @@ class City:
             balance_of_motif = self.balance[motif]
             amount_to_transfer = balance_of_motif // representative_portion
             if amount_to_transfer > 0:
-                for n in self.neighbours:
+                for neighbour in self.neighbours:
                     self.balance[motif] -= amount_to_transfer
-                    n.add_balance_in_motif(motif, amount_to_transfer)
+                    neighbour.add_balance_in_motif(motif, amount_to_transfer)
 
     def add_balance_in_motif(self, motif: str, amount: int) -> None:
         self.balance_per_day[motif] += amount
